@@ -140,3 +140,50 @@ const tax = 0.1
 const arr = ['blue', 'red', 'green']
 arr[1] = 'pink'
 console.log(arr)
+
+function Car(maker, brand, type, color, year) {
+  this.maker = maker
+  this.brand = brand
+  this.type = type
+  this.color = color
+  this.year = year
+  this.updateYear = function () {
+    return ++this.year
+  }
+}
+
+const hondacar = new Car('HONDA', 'CIVIC', 'compact', ['red', 'sliver'], 2022)
+console.log(hondacar.brand)
+let year = hondacar.updateYear()
+console.log(year)
+
+const now = new Date()
+console.log(now.getFullYear())
+document.body.innerHTML =
+  `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日`
+
+const old = new Date('1999-9-10')
+if (old.getDay() == 5) {
+  console.log('金曜日')
+}
+
+// 繰り返し処理
+// for文
+// for (初期化式; 繰り返し条件; 増減式) {}
+for (let counter = 0; counter <= 10; counter++) {
+  console.log(`カウンターの値は ${counter}`)
+}
+console.log(pens)
+for (let i = 0; i < pens.length; i++) {
+  console.log(`ペンの色は ${pens[i]}`)
+  if (pens[i] === 'white') {
+    console.log('当たり！')
+  }
+}
+// for...of文
+// for ( 変数 of 配列 ) { }
+for (let color of pens) {
+  console.log(`ペンの色は${color}です`)
+}
+
+// switch文
