@@ -238,3 +238,50 @@ const cal = document.querySelector('#calendar')
 const tbody = cal.querySelector('tbody')
 console.log(cell)
 tbody.innerHTML = cell
+
+// DOM
+const fruits = document.getElementsByTagName('p')
+console.log(fruits)
+
+const sweet = document.getElementById('sweet')
+console.log(sweet)
+
+const foods = document.getElementsByClassName('food')
+console.log(foods)
+
+console.log(
+  document.querySelector('p')
+)
+console.log(
+  document.querySelectorAll('p')
+)
+
+const boxImg = document.querySelector('#box img')
+boxImg.id = 'main-img'
+boxImg.className += ' box-img small'
+boxImg.classList.add('dummy')
+boxImg.classList.remove('medium')
+console.log(boxImg.classList.contains('dummy'))
+
+const outerlink = document.querySelector('.outerlink a')
+outerlink.setAttribute('target', '_blank')
+
+const links = document.querySelectorAll('.links a')
+console.dir(document)
+links.forEach(function (el) {
+  if (!el.href.includes(document.baseURI)) {
+    el.setAttribute('target', '_blank')
+  }
+})
+
+fn = function () { }
+function example(fn) {
+  //...
+  let a = 5
+  let b = 4
+  fn(a, b)
+}
+
+example(function (a, b) {
+  return a * b
+})
