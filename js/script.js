@@ -3,7 +3,7 @@ console.log('おはようございます')
 // alert('おはようございます')
 /*コメント*/
 
-document.body.innerHTML = '<h1>今日は雨です</h1>'
+// document.body.innerHTML = '<h1>今日は雨です</h1>'
 
 var box
 let box2
@@ -159,8 +159,8 @@ console.log(year)
 
 const now = new Date()
 console.log(now.getFullYear())
-document.body.innerHTML =
-  `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日`
+// document.body.innerHTML =
+//   `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日`
 
 const old = new Date('1999-9-10')
 if (old.getDay() == 5) {
@@ -187,3 +187,54 @@ for (let color of pens) {
 }
 
 // switch文
+const color = ''
+if (color == 'blue') {
+  console.log('colorはblueです')
+} else if (color == 'pink') {
+  console.log('colorはpinkです')
+} else if (color == 'green') {
+  console.log('colorはgreenです')
+} else {
+  console.log('colorはありません')
+}
+switch (color) {
+  case 'blue':
+    console.log('colorはblueです')
+    break
+  case 'pink':
+    console.log('colorはpinkです')
+    break
+  case 'green':
+    console.log('colorはgreenです')
+    break
+  default:
+    console.log('colorはありません')
+}
+
+// カレンダー
+const date = new Date()
+const date2 = new Date(2023, 5, 0)
+const firstDay = new Date(date.getFullYear() + '-' + (date.getMonth() + 1) + '-1') //'YYYY-MM-DD'
+
+const firstCell = firstDay.getDay()
+const days = date2.getDate()
+const maxCell = Math.ceil((firstCell + days) / 7) * 7
+
+let cell = '<tr>' //<td>1</td><td>2</td>...
+for (let d = 1; d <= maxCell; d++) {
+  if (firstCell <= (d - 1) && days >= d - firstCell) {
+    cell += `<td>${d - 1}</td>`
+  } else {
+    cell += '<td></td>'
+  }
+
+  if (d % 7 == 0 && d !== maxCell) {
+    cell += '</tr><tr>'
+  }
+}
+cell += '</tr>'
+
+const cal = document.querySelector('#calendar')
+const tbody = cal.querySelector('tbody')
+console.log(cell)
+tbody.innerHTML = cell
