@@ -9,7 +9,7 @@
       "request": "launch",
       "name": "JS練習用のデバッガ",
       "url": "http://127.0.0.1:5555",
-      "webRoot": "${workspaceFolder}"
+      "webRoot": "${workspaceFolder}/jsonajax/"
     }
   ]
 }

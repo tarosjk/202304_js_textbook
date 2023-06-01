@@ -6,7 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JavaScript基礎</title>
+  <style>
+    .textarea {
+      display: grid;
+      grid-template-rows: 1fr;
+      transition: grid-template-rows .3s;
+    }
 
+    .textarea.hide {
+      /* display: none; */
+      grid-template-rows: 0fr;
+    }
+
+    .textarea .textarea-inner {
+      overflow: hidden;
+    }
+  </style>
 </head>
 
 <body>
@@ -68,6 +83,23 @@
     <li><a href="https://google.co.jp">Google</a></li>
     <li><a href="https://www.microsoft.com/ja-jp">Microsoft</a></li>
   </ul>
+
+  <figure class="featured-image">
+    <img src="https://picsum.photos/id/111/300/250" alt="アメリカンクラシックカー">
+    <!-- ここにfigcaptionタグを挿入 -->
+  </figure>
+
+  <div class="sample">
+    <a href="#" class="sample-link">リンク</a>
+  </div>
+
+  <button class="toggle" type="button" data-text="開く"><span>隠す</span></button>
+  <div class="textarea">
+    <div class="textarea-inner">
+      <p>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、</p>
+      <p>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、</p>
+    </div>
+  </div>
 
   <script src="js/script.js"></script>
 </body>

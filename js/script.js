@@ -285,3 +285,36 @@ function example(fn) {
 example(function (a, b) {
   return a * b
 })
+
+const featuredImg = document.querySelector('.featured-image')
+const captext = featuredImg.querySelector('img').getAttribute('alt')
+const figcap = document.createElement('figcaption')
+const capTextNode = document.createTextNode(captext)
+figcap.appendChild(capTextNode)
+featuredImg.appendChild(figcap)
+featuredImg.insertAdjacentElement('afterbegin', figcap)
+
+// スタイル
+const sampleLink = document.querySelector('.sample-link')
+sampleLink.style.backgroundColor = '#453436';
+sampleLink.style.cssText = 'color: white;display: block; background-color: #453436;'
+
+// イベントハンドリング
+const toggle = document.querySelector('.toggle')
+const textarea = document.querySelector('.textarea')
+
+function toggleTextarea(e) {
+  console.log(e)
+  textarea.classList.toggle('hide')
+  const btnText = toggle.getAttribute('data-text')
+  const dispText = toggle.textContent
+  toggle.textContent = btnText
+  toggle.setAttribute('data-text', dispText)
+}
+// toggle.onclick = toggleTextarea
+toggle.addEventListener('click', toggleTextarea)
+// toggle.addEventListener('click', function(){})
+toggle.addEventListener('click', () => {
+  // alert('クリックしました！')
+  toggle.removeEventListener('click', toggleTextarea)
+})
