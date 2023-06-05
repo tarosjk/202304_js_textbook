@@ -49,3 +49,68 @@ $('.works-desc').remove()
 const alt = $('.works-thumb img').attr('alt')
 console.log(alt)
 $('.works-thumb img').attr('alt', '古い家具')
+
+// クラス追加・削除
+// $('.faq-openclose').addClass('is-open')
+// $('.faq-openclose').toggleClass('is-open')
+
+// イベント操作
+$('body').on('click', '.faq-openclose', e => {
+  console.log('クリックしました')
+  // $(e.target).off('click')
+  $(e.target).toggleClass('is-open')
+})
+// これと同等: $('.faq-openclose').click(e=>{})
+// ダブルクリック .on('dblclick') == dblclick()
+// ホバー .on('mouseenter') .on('mouseleave') == hover(()=>{}, () => {})
+
+$(document).ready(() => {
+  $('.site-header-logo').css('border-bottom', '2px solid #000')
+})
+// $(() => {})
+
+$(window).on('load', () => {
+  console.log('ページロード完了')
+  $('.loader').remove()
+})
+
+// イベントオブジェクト
+$('.faq-list *').on('click', e => {
+  console.dir(e)
+  e.stopPropagation()
+})
+
+// マウス追従
+const mouseFollow = $('.mouse-follow')
+let
+  mouseX = 0, //マウスのX座標
+  mouseY = 0, //マウスのY座標
+  currentX = 0, // 現在のX座標(lerpの結果)
+  currentY = 0  // 現在のY座標(lerpの結果)
+$(window).on('mousemove', e => {
+  console.log(e.clientX, e.clientY)
+  mouseX = e.clientX
+  mouseY = e.clientY
+  // mouseFollow.css({
+  //   'left': e.clientX,
+  //   'top': e.clientY
+  // })
+})
+
+function updateFollowPosition() {
+  let nowX = lerp(currentX, mouseX, 0.1)
+  let nowY = lerp(currentY, mouseY, 0.1)
+  currentX = nowX
+  currentY = nowY
+  mouseFollow.css({
+    'left': nowX,
+    'top': nowY
+  })
+  requestAnimationFrame(updateFollowPosition)
+}
+updateFollowPosition()
+
+// c: current(現在値) d: destination(目的値) e: easing(イージング)
+function lerp(c, d, e = 0.05) {
+  return c + (d - c) * e
+}
