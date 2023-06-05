@@ -20,11 +20,11 @@ $('.works-panel').find('.works-title').css('border-bottom', '2px solid #000')
 
 $('.contact-logo').closest('div').css('background', '#eee')
 
-const tweet = '<div class="tweet-content">イエローマジックデザインワークショップを開催しました。「普段何気なく使っているモノの見方を変えて見る」をテーマに、参加者のいろんなアイデアと作品が生まれました。</div>';
+// const tweet = '<div class="tweet-content">イエローマジックデザインワークショップを開催しました。「普段何気なく使っているモノの見方を変えて見る」をテーマに、参加者のいろんなアイデアと作品が生まれました。</div>';
 
-const $tweetContainer = $('.tweet-container')
-$tweetContainer.append(tweet)
-$tweetContainer.html(tweet)
+// const $tweetContainer = $('.tweet-container')
+// $tweetContainer.append(tweet)
+// $tweetContainer.html(tweet)
 
 let display = true
 // on => addEventListener
@@ -114,3 +114,60 @@ updateFollowPosition()
 function lerp(c, d, e = 0.05) {
   return c + (d - c) * e
 }
+
+$('a, .faq-openclose').hover(
+  // mouseenter
+  () => {
+    $('body').addClass('link-active')
+  },
+
+  // mouseleave
+  () => {
+    $('body').removeClass('link-active')
+  }
+)
+
+// フェードイン・フェードアウト
+$('.tweet-show').on('click', () => {
+  $('.tweet-content-ls16').fadeIn(1000, function () {
+    $(this).css('background-color', 'yellow')
+  })
+})
+$('.tweet-hide').on('click', () => {
+  $('.tweet-content-ls16').fadeOut()
+})
+
+// 表示・非表示・トグル
+$('.faq-openclose').on('click', e => {
+  const dd = $(e.target).parent().next()
+
+  // show / hide
+  // if (dd.is(':visible')) {
+  //   dd.hide()
+  // } else {
+  //   dd.show()
+  // }
+  // dd.toggle(!dd.is(':visible'))
+
+  $(e.target).toggleClass('is-open')
+
+  // slideDown / slideUp / slideToggle
+  // dd.slideDown(7000)
+  dd.stop().slideToggle(!dd.is(':visible'))
+})
+
+// コンテンツ切り替え（タイマー処理）
+const tweets = [
+  '「DX支援」に当社のサービスがお役に立てるかもしれません。',
+  '良いデザインはどっち？ クイズを解くだけで、デザインの知識がどんどん身につく画期的なデザイン手法を紹介',
+  '現場監督からWebデザイナーに転職。建築現場責任者として活躍されていた川本さんのキャリアチェンジの理由は？',
+  'Webデザインの勉強やトレンドキャッチに役立つSNSアカウントおすすめ25選'
+];
+
+const tweetContent = $('.tweet-content-ls19')
+let counter = 0
+tweetContent.text(tweets[0]).fadeIn()
+
+setInterval(() => {
+  tweetContent.fadeOut()
+}, 3000)
