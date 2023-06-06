@@ -668,3 +668,23 @@ body.link-active .mouse-follow {
 html {
   cursor: none;
 }
+
+/* inView用スタイル */
+.service-list {
+  outline: 5px solid rgba(255 240 0 / .5);
+}
+.service-card {
+  transition: .6s;
+  opacity: 0;
+  transform: translateY(50px);
+}
+.service-list.in-view .service-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+.service-list li:nth-of-type(2) .service-card {
+  transition-delay: .4s;
+}
+.service-list li:nth-of-type(3) .service-card {
+  transition-delay: .8s;
+}

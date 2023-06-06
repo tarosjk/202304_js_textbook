@@ -88,7 +88,7 @@ let
   currentX = 0, // 現在のX座標(lerpの結果)
   currentY = 0  // 現在のY座標(lerpの結果)
 $(window).on('mousemove', e => {
-  console.log(e.clientX, e.clientY)
+  // console.log(e.clientX, e.clientY)
   mouseX = e.clientX
   mouseY = e.clientY
   // mouseFollow.css({
@@ -166,8 +166,61 @@ const tweets = [
 
 const tweetContent = $('.tweet-content-ls19')
 let counter = 0
-tweetContent.text(tweets[0]).fadeIn()
+tweetContent.text(tweets[counter]).fadeIn()
 
-setInterval(() => {
-  tweetContent.fadeOut()
+let intervalID = setInterval(() => {
+  tweetContent.text(tweets[counter]).fadeOut(400, () => {
+    counter++
+    console.log(tweets[counter])
+    if (counter === tweets.length) {
+      counter = 0
+      clearInterval(intervalID)
+    }
+    tweetContent.text(tweets[counter]).fadeIn()
+  })
 }, 3000)
+console.log('インターバルID', intervalID)
+
+// inView
+$(window).on('load', () => {
+  const $serviceList = $('.service-list')
+  $(window).on('scroll', () => {
+    let isInView = $serviceList.inView('topOnly', 150)
+    if (isInView) {
+      console.log('要素がビューポートに入りました')
+    } else {
+      console.log('要素がビューポートから外れました')
+    }
+    if (isInView && !$serviceList.hasClass('in-view')) {
+      $serviceList.addClass('in-view')
+    }
+  })
+  $(window).trigger('scroll') //仮想的にスクロールイベントを発生
+
+})
+
+// slick
+$('.works-container').slick({
+  autoplay: true,
+  autoplaySpeed: 4000,
+  dots: true,
+  // fade: true,
+  speed: 1000,
+  pauseOnHover: false,
+  responsive: [
+    // 768
+    {
+      breakpoint: 768,
+      settings: {
+        autoplaySpeed: 1000,
+      }
+    },
+    // 960
+    {
+      breakpoint: 960,
+      settings: {
+        slidesToShow: 2,
+      }
+    }
+  ],
+})
